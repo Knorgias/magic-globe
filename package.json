@@ -1,0 +1,86 @@
+{
+  "name": "lit-element-starter-js",
+  "description": "A simple web component",
+  "license": "BSD-3-Clause",
+  "author": "The Polymer Authors",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "knorgi-element.js",
+  "module": "knorgi-element.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "docs": "npm run docs:clean && npm run analyze && npm run docs:build && npm run docs:assets && npm run docs:gen",
+    "docs:clean": "rimraf docs",
+    "docs:gen": "eleventy --config=.eleventy.cjs",
+    "docs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
+    "docs:build": "rollup -c --file docs/knorgi-element.bundled.js",
+    "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
+    "docs:serve": "es-dev-server --root-dir=docs --node-resolve --watch",
+    "analyze": "wca analyze \"**/*.js\" --outFile custom-elements.json",
+    "serve": "es-dev-server --node-resolve --watch",
+    "test": "web-test-runner --coverage",
+    "test:watch": "web-test-runner --watch",
+    "test:update-snapshots": "karma start karma.conf.cjs --update-snapshots",
+    "test:prune-snapshots": "karma start karma.conf.cjs --prune-snapshots",
+    "checksize": "rollup -c ; cat knorgi-element.bundled.js | gzip -9 | wc -c ; rm knorgi-element.bundled.js",
+    "build": "echo \"This is not a TypeScript project, so no need to build.\"",
+    "start": "web-dev-server --node-resolve --watch --open"
+  },
+  "dependencies": {
+    "lit-element": "^2.3.1"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "@open-wc/eslint-config": "^4.3.0",
+    "@open-wc/testing": "next",
+    "@open-wc/testing-karma": "^3.3.11",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@web/dev-server": "^0.1.28",
+    "@web/test-runner": "^0.13.16",
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.2.0",
+    "deepmerge": "^4.2.2",
+    "es-dev-server": "^1.46.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^4.3.8",
+    "karma": "^4.4.1",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^1.3.0",
+    "lint-staged": "^10.5.4",
+    "lit-analyzer": "^1.1.9",
+    "mocha": "^7.1.1",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "web-component-analyzer": "^1.0.3"
+  },
+  "keywords": [
+    "web-components",
+    "lit-element",
+    "javascript"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "@open-wc",
+      "prettier"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

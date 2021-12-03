@@ -7,6 +7,8 @@ const quotes = [
   '"First say to yourself what you would be; and then do what you have to do." – Epictetus',
   '"Waste no more time arguing what a good man should be. Be One." – Marcus Aurelius',
   '"I \'ve learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel." - Maya Angelou',
+  'The way to get started is to quit talking and begin doing. -Walt Disney',
+  'Tell me and I forget. Teach me and I remember. Involve me and I learn. -Benjamin Franklin',
 ];
 
 export class MagicGlobe extends LitElement {

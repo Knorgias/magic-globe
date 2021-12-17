@@ -1,9 +1,9 @@
 {
   "name": "lit-element-starter-js",
   "description": "A simple web component",
-  "license": "BSD-3-Clause",
-  "author": "The Polymer Authors",
-  "version": "0.0.0",
+  "license": "MIT",
+  "author": "K Norgias",
+  "version": "0.0.1",
   "type": "module",
   "main": "knorgi-element.js",
   "module": "knorgi-element.js",

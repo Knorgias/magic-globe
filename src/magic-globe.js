@@ -41,17 +41,21 @@ export class MagicGlobe extends LitElement {
       quote: {
         type: String,
       },
+      _quotes: {
+        type: Array,
+      },
     };
   }
 
   constructor() {
     super();
     this.name = 'Somebody';
+    this._quotes = quotes;
     this.quote = this._getRandomQuote();
   }
 
   _getRandomQuote() {
-    return this.quotes[Math.floor(Math.random() * quotes.length)];
+    return this._quotes[Math.floor(Math.random() * quotes.length)];
   }
 
   _updateQuote() {

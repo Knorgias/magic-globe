@@ -17,41 +17,64 @@ export class RookieGymCard extends LitElement {
       :host {
         background-color: green;
         width: 200px;
-        height: 150px;
-      }
+        height: 300px;
 
-      img {
-        width: inherit;
+        font-family: Verdana, sans-serif;
       }
 
       .card {
-        display: block;
+        box-sizing: border-box;
+
         width: inherit;
-        border: 1px solid #f1f1f1;
-        background-color: transparent;
+        height: inherit;
+        position: relative;
+        text-align: center;
         perspective: 1000px; /* Remove this if you don't want the 3D effect */
       }
 
-      .card-inner {
+      /** card heading shares the (rest of the) height of card with card-content*/
+      .card-heading {
+        /** typography */
+        font-size: 18px;
+
+        background-color: skyblue;
+        padding: 4px;
+        margin: auto;
+        height: 32px;
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .card-content {
+        /** typography */
+        font-size: 12px;
+
+        /**spacing */
         position: relative;
         width: 100%;
         height: 100%;
         text-align: center;
+
+        /**borders & shadows */
+        border: 2px solid black;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+        /** anitaions */
         transition: transform 0.8s;
         transform-style: preserve-3d;
       }
 
-      /* Do an horizontal flip when you move the mouse over the flip box container */
-      .card:hover .card-inner {
+      /* hover and focus-within states */
+      .card:hover .card-content,
+      .card:focus-within .card-content {
         transform: rotateY(180deg);
       }
 
       /* Position the front and back side */
       .card-front,
       .card-back {
+        height: inherit;
         position: absolute;
-        width: 100%;
-        height: 100%;
         -webkit-backface-visibility: hidden; /* Safari */
         backface-visibility: hidden;
       }
@@ -61,6 +84,16 @@ export class RookieGymCard extends LitElement {
         color: black;
       }
 
+      .card-front-image {
+        margin: 8px;
+        padding-top: 16px;
+        display: block; /* remove extra space below image */
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
       /* Style the back side */
       .card-back {
         transform: rotateY(180deg);
@@ -76,18 +109,20 @@ export class RookieGymCard extends LitElement {
 
   render() {
     return html`
-      <h2 class="card-heading">${this.heading}</h2>
       <div class="card">
-        <div class="card-inner">
+        <div class="card-content">
           <div class="card-front">
-            <img
-              src="../assets/Bench-press-1.png"
-              alt="${this.imageDescription}"
-              class="card-image"
-            />
+            <h2 class="card-heading">${this.heading}</h2>
+            <div class="card-front-image">
+              <img
+                src="../assets/Bench-press-1.png"
+                alt="${this.imageDescription}"
+              />
+            </div>
           </div>
           <div class="card-back">
-            <h2>Bench Press - Instructions</h2>
+            <h2 class="card-heading">${this.heading}</h2>
+            <p>Instructions</p>
             <p>
               The person performing the exercise lies on their back on a bench
               with a barbell grasped in both hands. They lower the barbell to
